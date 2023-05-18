@@ -46,6 +46,12 @@ pub fn get_default_users() -> HashMap<String, User> {
     return users;
 }
 
+pub fn save_users(users: &HashMap<String, User>) {
+    let users_path = Path::new("users.json");
+    let users_json = serde_json::to_string(&users).expect("Serialization fail");
+    std::fs::write(users_path, users_json).expect("File error");
+}
+
 pub fn get_users() -> HashMap<String, User> {
     let users_path = Path::new("users.json");
     if users_path.exists() {
@@ -58,8 +64,7 @@ pub fn get_users() -> HashMap<String, User> {
     } else {
         // Create the file
         let users = get_default_users();
-        let users_json = serde_json::to_string(&users).expect("Serialization fail");
-        std::fs::write(users_path, users_json).expect("File error");
+        save_users(&users);
         return users;
     }
 }
