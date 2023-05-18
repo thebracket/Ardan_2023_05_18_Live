@@ -7,8 +7,15 @@ name = "ardan_2023_05_18_live"
 version = "0.1.0"
 
 [[package]]
+name = "auth"
+version = "0.1.0"
+
+[[package]]
 name = "login"
 version = "0.1.0"
+dependencies = [
+ "auth",
+]
 
 [[package]]
 name = "variables"

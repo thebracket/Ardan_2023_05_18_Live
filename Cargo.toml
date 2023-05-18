@@ -9,4 +9,5 @@ edition = "2021"
 members = [
     "login", # Play project to get started
     "variables", # Playing with variables
+    "auth", # Authentication Library
 ]
