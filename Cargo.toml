@@ -7,5 +7,6 @@ edition = "2021"
 
 [workspace]
 members = [
-    "login" # Play project to get started
+    "login", # Play project to get started
+    "variables", # Playing with variables
 ]
