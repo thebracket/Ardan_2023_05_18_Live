@@ -11,10 +11,18 @@ fn double_or_nothing(n : i32) -> i32 {
     }
 }
 
+fn greet(s: &mut String) {
+    *s = format!("Hello {s}");
+    println!("{s}");
+}
+
 fn main() {
-    let n = double(2);
+    let mut name = "Herbert".to_string();
+    greet(&mut name);
+    name += "!";
+    /*let n = double(2);
     let a = double_or_nothing(2);
     let b = double_or_nothing(-2);
     println!("{n} {a} {b}");
-    println!("{}", double(2));
+    println!("{}", double(2));*/
 }
