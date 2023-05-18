@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 auth = { path = "../auth" }
 clap = { version = "4.2.7", features = ["derive"] }
+once_cell = "1.17.1"

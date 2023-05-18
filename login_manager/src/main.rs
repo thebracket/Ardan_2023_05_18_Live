@@ -1,5 +1,9 @@
+use std::{collections::HashMap, sync::RwLock};
 use clap::{Parser, Subcommand};
 use auth::*;
+use once_cell::sync::Lazy;
+
+static USER_LIST: Lazy<RwLock<HashMap<String, User>>> = Lazy::new(|| RwLock::new(get_users()));
 
 #[derive(Parser)]
 #[command()]
@@ -43,7 +47,7 @@ fn list_users() {
     println!("{:<20}{:<20}", "Username", "Login Action");
     println!("{:-<40}", "");
 
-    let users = get_users();
+    let users = USER_LIST.read().unwrap();
     users
         .iter()
         .for_each(|(_username, user)| {
@@ -52,7 +56,7 @@ fn list_users() {
 }
 
 fn add_user(username: String, password: String, admin: Option<bool>) {
-    let mut users = get_users();
+    let mut users = USER_LIST.write().unwrap();
     if users.contains_key(&username) {
         println!("{username} already exists! Updating record.");
         // return; // <-- Bail out!
