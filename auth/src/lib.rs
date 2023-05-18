@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 pub fn hello_world() {
     println!("Hello, World");
 }
@@ -12,6 +14,7 @@ pub enum LoginAction {
     Granted(LoginRole), Denied
 }
 
+#[derive(Clone, Debug)]
 pub struct User {
     pub username: String,
     pub password: String,
@@ -28,17 +31,21 @@ impl User {
     }
 }
 
-pub fn get_users() -> Vec<User> {
-    vec! [
+pub fn get_users() -> HashMap<String, User> {
+    let mut users = HashMap::new();
+    users.insert("admin".to_string(), User::new("admin", "password", LoginRole::Admin));
+    users.insert("bob".to_string(), User::new("bob", "password", LoginRole::User));
+    return users;
+    /*vec! [
         User::new("admin", "password", LoginRole::Admin),
         User::new("bob", "password", LoginRole::User),
-    ]
+    ]*/
 }
 
 #[allow(clippy::needless_return)]
 pub fn login(username: &str, password: &str) -> Option<LoginAction> {
     let users = get_users();
-    match users.iter().find(|user| user.username == username) {
+    match users.get(username) {
         Some(user) => {
             if user.password == password {
                 return Some(LoginAction::Granted(user.role));
@@ -50,6 +57,19 @@ pub fn login(username: &str, password: &str) -> Option<LoginAction> {
             return None;
         }
     }
+
+    /*match users.iter().find(|user| user.username == username) {
+        Some(user) => {
+            if user.password == password {
+                return Some(LoginAction::Granted(user.role));
+            } else {
+                return Some(LoginAction::Denied);
+            }
+        }
+        None => {
+            return None;
+        }
+    }*/
 }
 
 /*
