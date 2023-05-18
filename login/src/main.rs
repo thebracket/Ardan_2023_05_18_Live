@@ -17,15 +17,15 @@ fn main() {
         let password = read_line();
 
         match login(&username, &password) {
-            LoginAction::Admin => {
+            Some(LoginAction::Granted(LoginRole::Admin)) => {
                 println!("Hello admin");
                 break;
             }
-            LoginAction::User => {
+            Some(LoginAction::Granted(LoginRole::User)) => {
                 println!("Hello user");
                 break;
             }
-            LoginAction::Denied => {
+            Some(LoginAction::Denied) | None => {
                 if tries > 3 {
                     break;
                 }
