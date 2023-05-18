@@ -1,6 +1,6 @@
 {
-    "fred": {
-        "username": "fred",
+    "bob": {
+        "username": "bob",
         "password": "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8",
         "role": "User"
     },
@@ -11,12 +11,7 @@
     },
     "herbert": {
         "username": "herbert",
-        "password": "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8",
+        "password": "6CF615D5BCAAC778352A8F1F3360D23F02F34EC182E259897FD6CE485D7870D4",
         "role": "Admin"
-    },
-    "bob": {
-        "username": "bob",
-        "password": "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8",
-        "role": "User"
     }
 }

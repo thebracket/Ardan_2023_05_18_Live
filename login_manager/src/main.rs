@@ -23,7 +23,20 @@ enum Commands {
         /// Optional - mark as an admin
         #[arg(long)]
         admin: Option<bool>,
-    }
+    },
+    /// Delete a user
+    Delete {
+        /// Username
+        username: String,
+    },
+    /// Change the user's password
+    ChangePassword {
+        /// Username whose password you want to change
+        username: String,
+
+        /// New password
+        new_password: String,
+    },
 }
 
 fn list_users() {
@@ -54,6 +67,27 @@ fn add_user(username: String, password: String, admin: Option<bool>) {
     save_users(&users);
 }
 
+fn delete_user(username: String) {
+    let mut users = get_users();
+    if users.contains_key(&username) {
+        let old_user = users.remove(&username);
+        println!("Removed: {old_user:?}");
+        save_users(&users);
+    } else {
+        println!("{username} does not exist");
+    }
+}
+
+fn change_password(username: String, new_password: String) {
+    let mut users = get_users();
+    if let Some(user) = users.get_mut(&username) {
+        user.password = hash_password(&new_password);
+        save_users(&users);
+    } else {
+        println!("{username} does not exist");
+    }
+}
+
 fn main() {
     let cli = Args::parse();
     match cli.command {
@@ -62,6 +96,12 @@ fn main() {
         }
         Some(Commands::Add { username, password, admin }) => {
             add_user(username, password, admin);
+        }
+        Some(Commands::Delete { username }) => {
+            delete_user(username);
+        }
+        Some(Commands::ChangePassword { username, new_password }) => {
+            change_password(username, new_password);
         }
         None => {
             println!("Run with --help for info");
