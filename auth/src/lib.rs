@@ -1,20 +1,21 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, path::Path};
+use serde::{Serialize, Deserialize};
 
 pub fn hello_world() {
     println!("Hello, World");
 }
 
-#[derive(PartialEq, Debug, Clone, Copy)]
+#[derive(PartialEq, Debug, Clone, Copy, Serialize, Deserialize)]
 pub enum LoginRole {
     Admin, User
 }
 
-#[derive(PartialEq, Debug, Clone, Copy)]
+#[derive(PartialEq, Debug, Clone, Copy, Serialize, Deserialize)]
 pub enum LoginAction {
     Granted(LoginRole), Denied
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct User {
     pub username: String,
     pub password: String,
@@ -31,15 +32,29 @@ impl User {
     }
 }
 
-pub fn get_users() -> HashMap<String, User> {
+pub fn get_default_users() -> HashMap<String, User> {
     let mut users = HashMap::new();
     users.insert("admin".to_string(), User::new("admin", "password", LoginRole::Admin));
     users.insert("bob".to_string(), User::new("bob", "password", LoginRole::User));
     return users;
-    /*vec! [
-        User::new("admin", "password", LoginRole::Admin),
-        User::new("bob", "password", LoginRole::User),
-    ]*/
+}
+
+pub fn get_users() -> HashMap<String, User> {
+    let users_path = Path::new("users.json");
+    if users_path.exists() {
+        // Load the file
+        let users_json = std::fs::read_to_string(users_path)
+            .expect("Unable to read file");
+        let users = serde_json::from_str(&users_json)
+            .expect("Unable to deserialize");
+        return users;
+    } else {
+        // Create the file
+        let users = get_default_users();
+        let users_json = serde_json::to_string(&users).expect("Serialization fail");
+        std::fs::write(users_path, users_json).expect("File error");
+        return users;
+    }
 }
 
 #[allow(clippy::needless_return)]
