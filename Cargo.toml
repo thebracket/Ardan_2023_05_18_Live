@@ -1,0 +1,8 @@
+[package]
+name = "Ardan_2023_05_18_Live"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
