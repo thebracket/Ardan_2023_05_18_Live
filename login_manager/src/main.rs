@@ -40,6 +40,10 @@ fn list_users() {
 
 fn add_user(username: String, password: String, admin: Option<bool>) {
     let mut users = get_users();
+    if users.contains_key(&username) {
+        println!("{username} already exists! Updating record.");
+        // return; // <-- Bail out!
+    }
     let role = if admin.unwrap_or(false) {
         LoginRole::Admin
     } else {
