@@ -20,4 +20,6 @@ members = [
     "week2_threads/dont_do_this", # Horrible example of unsafe data racing
     "week2_threads/atomics", # Atomic Numbers
     "week2_threads/mutexes", # Sync with mutexes
+    "week2_threads/read_write_lock", # Sync with rwlock
+    
 ]
