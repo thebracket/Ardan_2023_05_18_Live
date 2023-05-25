@@ -16,4 +16,5 @@ members = [
     "week2_threads/hello_thread", # Your First Thread
     "week2_threads/divide_work", # Dividing workloads
     "week2_threads/thread_builder", # Thread Builder Patern
+    "week2_threads/scoped_threads", # Scoped threads
 ]
