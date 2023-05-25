@@ -26,6 +26,8 @@ fn main() {
     };
     tx.send(Box::new(job2)).unwrap();
     tx.send(Box::new(|| println!("Inline function!"))).unwrap();
+    //let n = 12;
+    //tx.send(Box::new(|| println!("{}", &n)));
 
     handle.join().unwrap();
 }
