@@ -19,4 +19,5 @@ members = [
     "week2_threads/scoped_threads", # Scoped threads
     "week2_threads/dont_do_this", # Horrible example of unsafe data racing
     "week2_threads/atomics", # Atomic Numbers
+    "week2_threads/mutexes", # Sync with mutexes
 ]
