@@ -15,4 +15,5 @@ members = [
     # Week 2 - System Threads
     "week2_threads/hello_thread", # Your First Thread
     "week2_threads/divide_work", # Dividing workloads
+    "week2_threads/thread_builder", # Thread Builder Patern
 ]
