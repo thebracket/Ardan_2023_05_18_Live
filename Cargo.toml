@@ -28,4 +28,6 @@ members = [
     "week2_threads/send_fn_thead", # Sending functions via channels
     "week2_threads/work_queue", # Simple work queue
     "week2_threads/cpu_affinity", # CPU/Core Affinity
+    "week2_threads/thread_prio", # Setting Thread Priority
+    "week2_threads/rayon_easy_mode", # Rayon for easy parallel tasks
 ]
