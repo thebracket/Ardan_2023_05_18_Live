@@ -23,4 +23,5 @@ members = [
     "week2_threads/read_write_lock", # Sync with rwlock
     "week2_threads/deadlocks", # Deadlocking
     "week2_threads/poisoning", # Poisoning
+    "week2_threads/mpsc", # Channels
 ]
