@@ -27,4 +27,5 @@ members = [
     "week2_threads/channel_ownership", # Channel ownership and moving/borrowing
     "week2_threads/send_fn_thead", # Sending functions via channels
     "week2_threads/work_queue", # Simple work queue
+    "week2_threads/cpu_affinity", # CPU/Core Affinity
 ]
