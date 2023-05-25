@@ -360,6 +360,10 @@ name = "scoped_threads"
 version = "0.1.0"
 
 [[package]]
+name = "send_fn_thead"
+version = "0.1.0"
+
+[[package]]
 name = "serde"
 version = "1.0.163"
 source = "registry+https://github.com/rust-lang/crates.io-index"
