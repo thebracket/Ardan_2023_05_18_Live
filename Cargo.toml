@@ -24,4 +24,5 @@ members = [
     "week2_threads/deadlocks", # Deadlocking
     "week2_threads/poisoning", # Poisoning
     "week2_threads/mpsc", # Channels
+    "week2_threads/channel_ownership", # Channel ownership and moving/borrowing
 ]
