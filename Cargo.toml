@@ -17,4 +17,5 @@ members = [
     "week2_threads/divide_work", # Dividing workloads
     "week2_threads/thread_builder", # Thread Builder Patern
     "week2_threads/scoped_threads", # Scoped threads
+    "week2_threads/dont_do_this", # Horrible example of unsafe data racing
 ]
