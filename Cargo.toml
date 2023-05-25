@@ -11,4 +11,7 @@ members = [
     "variables", # Playing with variables
     "auth", # Authentication Library
     "login_manager", # CLI app for managing logins
+
+    # Week 2 - System Threads
+    "week2_threads/hello_thread", # Your First Thread
 ]
