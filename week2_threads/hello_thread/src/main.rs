@@ -15,7 +15,8 @@ fn main() {
 
     let mut thread_handles = Vec::new();
     for i in 0 .. 10 {
-        let handle = std::thread::spawn(move || do_math(i));
+        let my_i = i.to_owned();
+        let handle = std::thread::spawn(move || do_math(my_i));
         thread_handles.push(handle);
     }
     
