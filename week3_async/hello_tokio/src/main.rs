@@ -4,5 +4,5 @@ async fn hello() {
 
 #[tokio::main]
 async fn main() {
-    hello().await;
+    tokio::join!(hello(), hello());
 }
