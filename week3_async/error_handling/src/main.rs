@@ -11,8 +11,8 @@ fn file_to_uppercase() -> Result<String, std::io::Error> {
 }
 
 fn main() {
-    match file_to_uppercase() {
-        Ok(text) => println!("File contents: {text}"),
-        Err(e) => println!("An error occurred: {e:?}"),
+    let _ = file_to_uppercase();
+    if let Ok(contents) = file_to_uppercase() {
+        // We have the contents!
     }
 }
