@@ -40,7 +40,7 @@ mod test {
         assert_eq!(rt.block_on(double(2)), 4);
     }
 
-    #[tokio::test]
+    #[tokio::test(flavor = "multi_thread", worker_threads = 2)]
     async fn the_easy_way() {
         assert_eq!(double(2).await, 4);
     }
