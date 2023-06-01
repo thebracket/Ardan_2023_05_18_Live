@@ -50,4 +50,5 @@ members = [
     "week3_async/select_channels", # Selecting channel futures
     "week3_async/tokio_tracing", # Tokio Tracing
     "week3_async/database", # Databases
+    "week3_async/web_server", # HTTP server
 ]
