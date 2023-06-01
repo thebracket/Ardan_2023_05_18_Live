@@ -6,6 +6,14 @@ async fn double(n: i32) -> i32 {
     n * 2
 }
 
+async fn ticker() {
+    for i in 0..10 {
+        println!("tick {i}");
+        // Relinquish control
+        tokio::task::yield_now().await;
+    }
+}
+
 #[tokio::main]
 async fn main() {
     tokio::join!(hello(), hello());
@@ -21,4 +29,8 @@ async fn main() {
     while let Some(res) = set.join_next().await {
         println!("{res:?}");
     }
+
+    // Spawning
+    tokio::spawn(ticker());
+    hello().await;
 }
