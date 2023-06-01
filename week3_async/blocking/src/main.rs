@@ -7,7 +7,8 @@ async fn hello_delay(task: u64, time: u64) {
     //tokio::time::sleep(Duration::from_millis(time)).await;
     let result = spawn_blocking(move || {
         std::thread::sleep(Duration::from_millis(time));
-    }).await;
+    })
+    .await;
     println!("Task {task} result {result:?}");
     println!("Task {task} is done.")
 }
@@ -21,10 +22,26 @@ async fn main() {
     futures::future::join_all(futures).await;
 }
 
+async fn double(n: i32) -> i32 {
+    n * 2
+}
+
 #[cfg(test)]
 mod test {
+    use super::double;
+
     #[test]
     fn simple() {
-        assert_eq!(2+2, 4);
+        let rt = tokio::runtime::Builder::new_current_thread()
+            .enable_all()
+            .build()
+            .unwrap();
+
+        assert_eq!(rt.block_on(double(2)), 4);
+    }
+
+    #[tokio::test]
+    async fn the_easy_way() {
+        assert_eq!(double(2).await, 4);
     }
 }
