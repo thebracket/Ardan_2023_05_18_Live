@@ -43,4 +43,5 @@ members = [
     "week3_async/file_io", # File I/O
     "week3_async/network_io", # Network I/O
     "week3_async/tcp_io", # TCP I/O
+    "week3_async/tcp_io_client", # TCP I/O
 ]
