@@ -90,6 +90,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "blocking"
+version = "0.1.0"
+dependencies = [
+ "futures",
+ "tokio",
+]
+
+[[package]]
 name = "bytes"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

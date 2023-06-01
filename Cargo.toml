@@ -37,4 +37,5 @@ members = [
     # Week 3 - Async
     "week3_async/hello_async", # The Async Hello World
     "week3_async/hello_tokio", # Intro to Tokio
+    "week3_async/blocking", # Blocking in Async
 ]
