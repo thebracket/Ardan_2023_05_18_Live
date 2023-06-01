@@ -51,4 +51,5 @@ members = [
     "week3_async/tokio_tracing", # Tokio Tracing
     "week3_async/database", # Databases
     "week3_async/web_server", # HTTP server
+    "week3_async/thumbnail_server",
 ]
