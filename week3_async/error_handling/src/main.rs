@@ -24,6 +24,38 @@ fn load_users() -> GenericResult<Vec<User>> {
     Ok(users)
 }
 
+fn load_users_anyhow() -> anyhow::Result<Vec<User>> {
+    let my_file = Path::new("users.json");
+    let raw_text = std::fs::read_to_string(my_file)?;
+    let users: Vec<User> = serde_json::from_str(&raw_text)?;
+    Ok(users)
+}
+
+use thiserror::Error;
+
+#[derive(Debug, Error)]
+enum UsersError {
+    #[error("No users found")]
+    NoUsers,
+    #[error("Too many users were found")]
+    TooManyUsers,
+}
+
+fn work_with_my_error() -> Result<Vec<User>, UsersError> {
+    let my_file = Path::new("users.json");
+    let raw_text = std::fs::read_to_string(my_file)
+        .map_err(|_| UsersError::NoUsers)?;
+    let users: Vec<User> = serde_json::from_str(&raw_text)
+        .map_err(|_| UsersError::NoUsers)?;
+    if users.is_empty() {
+        Err(UsersError::NoUsers)
+    } else if users.len() > 10 {
+        Err(UsersError::TooManyUsers)
+    } else {
+        Ok(users)
+    }
+}
+
 fn main() {
     let users = load_users();
     match users {
