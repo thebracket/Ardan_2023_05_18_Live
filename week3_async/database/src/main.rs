@@ -1,5 +1,13 @@
 use sqlx::Row;
 
+use sqlx::FromRow;
+
+#[derive(Debug, FromRow)]
+struct Message {
+    id: i64,
+    message: String,
+}
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     // Read the .env file and obtain the database URL
@@ -10,18 +18,21 @@ async fn main() -> anyhow::Result<()> {
     let pool = sqlx::SqlitePool::connect(&db_url).await?;
 
     // Fetch the messages from the database
-    let messages = sqlx::query("SELECT id, message FROM messages")
-        .map(|row: sqlx::sqlite::SqliteRow| {
-            let id: i64 = row.get(0);
-            let message: String = row.get(1);
-            (id, message)
-        })
+    let messages = sqlx::query_as::<_, Message>("SELECT id, message FROM messages")
         .fetch_all(&pool)
         .await?;
 
     // Print the messages
-    for (id, message) in messages {
-        println!("{id}: {message}");
+    for message in messages.into_iter() {
+        println!("{message:?}");
+    }
+
+    println!("--- stream ---");
+    use futures::TryStreamExt;
+    let mut message_stream =
+        sqlx::query_as::<_, Message>("SELECT id, message FROM messages").fetch(&pool);
+    while let Some(message) = message_stream.try_next().await? {
+        println!("{message:?}");
     }
 
     Ok(())
