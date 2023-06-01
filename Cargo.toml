@@ -47,4 +47,6 @@ members = [
     "week3_async/tokio_channels", # Channels in Tokio
     "week3_async/tokio_shared_state", # Shared State
     "week3_async/selecting", # Selecting Futures
+    "week3_async/select_channels", # Selecting channel futures
+    "week3_async/tokio_tracing", # Tokio Tracing
 ]
