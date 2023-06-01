@@ -1,4 +1,9 @@
 use futures::executor::block_on;
+use futures::join;
+
+async fn do_work() {
+    join!(say_hello(), second_fn());
+}
 
 async fn say_hello() {
     println!("Hello, world!");
@@ -10,5 +15,5 @@ async fn second_fn() {
 }
 
 fn main() {
-    block_on(say_hello());
+    block_on(do_work());
 }
