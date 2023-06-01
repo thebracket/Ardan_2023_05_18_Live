@@ -44,4 +44,5 @@ members = [
     "week3_async/network_io", # Network I/O
     "week3_async/tcp_io", # TCP I/O
     "week3_async/tcp_io_client", # TCP I/O
+    "week3_async/tokio_channels", # Channels in Tokio
 ]

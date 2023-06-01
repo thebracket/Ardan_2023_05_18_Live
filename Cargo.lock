@@ -1384,6 +1384,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "tokio_channels"
+version = "0.1.0"
+dependencies = [
+ "tokio",
+]
+
+[[package]]
 name = "tokio_errors"
 version = "0.1.0"
 dependencies = [
