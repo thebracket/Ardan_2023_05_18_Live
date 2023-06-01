@@ -40,4 +40,5 @@ members = [
     "week3_async/blocking", # Blocking in Async
     "week3_async/error_handling", # Exploring Errors
     "week3_async/tokio_errors", # Errors in async
+    "week3_async/file_io", # File I/O
 ]
