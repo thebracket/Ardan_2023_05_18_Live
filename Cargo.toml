@@ -32,4 +32,5 @@ members = [
     "week2_threads/rayon_easy_mode", # Rayon for easy parallel tasks
     "week2_threads/rayon_scoped", # Rayon for thread pools and scoping
     "week2_threads/rayon_other", # Other cool things
+    "week2_threads/parking", # Parking threads
 ]
