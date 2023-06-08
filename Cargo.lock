@@ -1501,6 +1501,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "point_trait"
+version = "0.1.0"
+
+[[package]]
 name = "poisoning"
 version = "0.1.0"
 
