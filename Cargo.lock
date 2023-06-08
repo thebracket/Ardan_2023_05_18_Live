@@ -1588,6 +1588,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "refcount"
+version = "0.1.0"
+
+[[package]]
 name = "reqwest"
 version = "0.11.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
