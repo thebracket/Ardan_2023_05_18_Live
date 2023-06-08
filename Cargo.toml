@@ -67,4 +67,5 @@ members = [
     "week4_memory/make_trait",
     "week4_memory/generic_basic",
     "week4_memory/hashmap_bucket",
+    "week4_memory/linked_list",
 ]
