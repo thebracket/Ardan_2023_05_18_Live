@@ -74,4 +74,5 @@ members = [
     "week4_memory/save_bytes",
     "week4_memory/save_dynamic_bytes",
     "week4_memory/c_rust",
+    "week4_memory/rust_c",
 ]
