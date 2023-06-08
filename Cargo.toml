@@ -71,4 +71,7 @@ members = [
     "week4_memory/arena_bump",
     "week4_memory/slab_arena",
     "week4_memory/packing_mangling",
+    "week4_memory/save_bytes",
+    "week4_memory/save_dynamic_bytes",
+    "week4_memory/c_rust",
 ]
