@@ -62,4 +62,5 @@ members = [
     "week4_memory/external_arc",
     "week4_memory/internal_arc",
     "week4_memory/refcell",
+    "week4_memory/lifetimes",
 ]
