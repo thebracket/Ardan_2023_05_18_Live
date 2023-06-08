@@ -60,4 +60,5 @@ members = [
     "week4_memory/refcount",
     "week4_memory/atomic_refcount",
     "week4_memory/external_arc",
+    "week4_memory/internal_arc",
 ]
