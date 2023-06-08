@@ -68,4 +68,7 @@ members = [
     "week4_memory/generic_basic",
     "week4_memory/hashmap_bucket",
     "week4_memory/linked_list",
+    "week4_memory/arena_bump",
+    "week4_memory/slab_arena",
+    "week4_memory/packing_mangling",
 ]

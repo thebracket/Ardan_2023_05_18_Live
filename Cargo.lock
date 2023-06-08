@@ -90,6 +90,13 @@ name = "ardan_2023_05_18_live"
 version = "0.1.0"
 
 [[package]]
+name = "arena_bump"
+version = "0.1.0"
+dependencies = [
+ "bumpalo",
+]
+
+[[package]]
 name = "async-trait"
 version = "0.1.68"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1402,6 +1409,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b15813163c1d831bf4a13c3610c05c0d03b39feb07f7e09fa234dac9b15aaf39"
 
 [[package]]
+name = "packing_mangling"
+version = "0.1.0"
+
+[[package]]
 name = "parking"
 version = "0.1.0"
 
@@ -1848,6 +1859,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6528351c9bc8ab22353f9d776db39a20288e8d6c37ef8cfe3317cf875eecfc2d"
 dependencies = [
  "autocfg",
+]
+
+[[package]]
+name = "slab_arena"
+version = "0.1.0"
+dependencies = [
+ "slab",
 ]
 
 [[package]]
