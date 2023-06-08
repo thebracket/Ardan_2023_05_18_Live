@@ -51,4 +51,8 @@ fn main() {
     let mut my_num = SmartPointer::<i32>::new();
     my_num.set(12);
     println!("my_num = {}", my_num.get());
+
+    let my_num = Box::new(12i32);
+    // Manual delete box
+    std::mem::drop(my_num);
 }
