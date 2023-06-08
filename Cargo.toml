@@ -58,4 +58,5 @@ members = [
     "week4_memory/raii",
     "week4_memory/smart_pointer",
     "week4_memory/refcount",
+    "week4_memory/atomic_refcount",
 ]

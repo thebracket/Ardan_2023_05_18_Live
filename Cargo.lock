@@ -110,6 +110,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "atomic_refcount"
+version = "0.1.0"
+
+[[package]]
 name = "atomics"
 version = "0.1.0"
 
