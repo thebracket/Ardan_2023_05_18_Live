@@ -59,4 +59,5 @@ members = [
     "week4_memory/smart_pointer",
     "week4_memory/refcount",
     "week4_memory/atomic_refcount",
+    "week4_memory/external_arc",
 ]
