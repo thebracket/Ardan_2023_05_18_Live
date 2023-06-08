@@ -55,4 +55,5 @@ members = [
 
     # Week 4 - Memory
     "week4_memory/libc_malloc",
+    "week4_memory/raii",
 ]

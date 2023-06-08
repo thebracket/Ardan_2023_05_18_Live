@@ -15,6 +15,24 @@ fn allocate_memory_with_libc() {
     }
 }
 
+fn allocate_memory_with_rust() {
+    use std::alloc::{alloc, dealloc, Layout};
+
+    unsafe {
+        // Allocate memory with Rust. It's safer to force alignment.
+        let layout = Layout::new::<u16>();
+        let ptr = alloc(layout);
+
+        // Set the allocated variable - dereference the pointer and set to 42
+        *ptr = 42;
+        assert_eq!(42, *ptr);
+
+        // Free the memory - this is not automatic
+        dealloc(ptr, layout);
+    }
+}
+
 fn main() {
     allocate_memory_with_libc();
+    allocate_memory_with_rust();
 }
