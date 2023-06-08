@@ -52,4 +52,7 @@ members = [
     "week3_async/database", # Databases
     "week3_async/web_server", # HTTP server
     "week3_async/thumbnail_server",
+
+    # Week 4 - Memory
+    "week4_memory/libc_malloc",
 ]
