@@ -65,4 +65,5 @@ members = [
     "week4_memory/lifetimes",
     "week4_memory/point_trait",
     "week4_memory/make_trait",
+    "week4_memory/generic_basic",
 ]
