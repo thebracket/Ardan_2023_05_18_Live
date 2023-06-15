@@ -342,8 +342,11 @@ name = "collector_server"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "dotenv",
  "shared_data",
+ "sqlx",
  "tokio",
+ "uuid",
 ]
 
 [[package]]
