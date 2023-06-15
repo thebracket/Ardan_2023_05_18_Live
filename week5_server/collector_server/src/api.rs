@@ -1,8 +1,9 @@
-use axum::Extension;
+use axum::{Extension, Json};
 use sqlx::FromRow;
 use futures::TryStreamExt;
+use serde::Serialize;
 
-#[derive(FromRow, Debug)]
+#[derive(FromRow, Debug, Serialize)]
 pub struct DataPoint {
     id: i32,
     collector_id: String,
@@ -12,11 +13,11 @@ pub struct DataPoint {
     average_cpu: f32,
 }
 
-pub async fn show_all(Extension(pool): Extension<sqlx::SqlitePool>) {
-    let mut rows = sqlx::query_as::<_, DataPoint>("SELECT * FROM timeseries")
-        .fetch(&pool);
+pub async fn show_all(Extension(pool): Extension<sqlx::SqlitePool>) -> Json<Vec<DataPoint>> {
+    let rows = sqlx::query_as::<_, DataPoint>("SELECT * FROM timeseries")
+        .fetch_all(&pool)
+        .await
+        .unwrap();
 
-    while let Some(row) = rows.try_next().await.unwrap() {
-        println!("{:?}", row);
-    }
+    Json(rows)
 }

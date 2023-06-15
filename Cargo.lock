@@ -345,6 +345,7 @@ dependencies = [
  "axum",
  "dotenv",
  "futures",
+ "serde",
  "shared_data",
  "sqlx",
  "tokio",
