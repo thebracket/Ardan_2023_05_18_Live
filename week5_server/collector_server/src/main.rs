@@ -19,6 +19,7 @@ async fn main() -> anyhow::Result<()> {
     // Start the web server
     let app = Router::new()
         .route("/", get(index))
+        .route("/collector.html", get(collector))
         .route("/api/all", get(api::show_all))
         .route("/api/collectors", get(api::show_collectors))
         .route("/api/collector/:uuid", get(api::collector_data))
@@ -37,6 +38,12 @@ async fn main() -> anyhow::Result<()> {
 
 pub async fn index() -> Html<String> {
     let path = std::path::Path::new("src/index.html");
+    let content = tokio::fs::read_to_string(path).await.unwrap();
+    Html(content)
+}
+
+pub async fn collector() -> Html<String> {
+    let path = std::path::Path::new("src/collector.html");
     let content = tokio::fs::read_to_string(path).await.unwrap();
     Html(content)
 }
