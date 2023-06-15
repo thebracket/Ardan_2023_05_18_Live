@@ -68,3 +68,22 @@ pub fn decode_v1(bytes: &[u8]) -> (u32, CollectorCommandV1) {
     // Decode the payload
     (timestamp, serde_json::from_slice(payload).unwrap())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_encode_decode() {
+        let command = CollectorCommandV1::SubmitData { 
+            collector_id: 100, 
+            total_memory: 100, 
+            used_memory: 50, 
+            average_cpu_usage: 0.5
+        };
+        let encoded = encode_v1(command.clone());
+        let (timestamp, decoded) = decode_v1(&encoded);
+        assert_eq!(decoded, command);
+        assert!(timestamp > 0);
+    }
+}
