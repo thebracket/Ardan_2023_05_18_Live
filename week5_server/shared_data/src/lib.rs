@@ -32,7 +32,7 @@ pub fn encode_v1(command: CollectorCommandV1) -> Vec<u8> {
     let timestamp = unix_now();
 
     // Encode into bytes
-    let mut result = Vec::new();
+    let mut result = Vec::with_capacity(56);
     result.extend_from_slice(&MAGIC_NUMBER.to_be_bytes());
     result.extend_from_slice(&VERSION_NUMBER.to_be_bytes());
     result.extend_from_slice(&timestamp.to_be_bytes());
