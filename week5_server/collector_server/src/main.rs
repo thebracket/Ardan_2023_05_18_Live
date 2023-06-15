@@ -2,6 +2,7 @@ mod collector;
 mod api;
 use std::net::SocketAddr;
 use axum::{Router, routing::get, Extension};
+use axum::response::Html;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
@@ -17,7 +18,7 @@ async fn main() -> anyhow::Result<()> {
 
     // Start the web server
     let app = Router::new()
-        .route("/", get(test))
+        .route("/", get(index))
         .route("/api/all", get(api::show_all))
         .route("/api/collectors", get(api::show_collectors))
         .route("/api/collector/:uuid", get(api::collector_data))
@@ -34,6 +35,8 @@ async fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-async fn test() -> &'static str {
-    "Hello, world!"
+pub async fn index() -> Html<String> {
+    let path = std::path::Path::new("src/index.html");
+    let content = tokio::fs::read_to_string(path).await.unwrap();
+    Html(content)
 }
