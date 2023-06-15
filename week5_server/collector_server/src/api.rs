@@ -1,4 +1,4 @@
-use axum::{Extension, Json};
+use axum::{Extension, Json, extract::Path};
 use sqlx::FromRow;
 use futures::TryStreamExt;
 use serde::Serialize;
@@ -39,4 +39,14 @@ pub async fn show_collectors(Extension(pool): Extension<sqlx::SqlitePool>) -> Js
         .fetch_all(&pool)
         .await
         .unwrap())
+}
+
+pub async fn collector_data(Extension(pool): Extension<sqlx::SqlitePool>, uuid: Path<String>) -> Json<Vec<DataPoint>> {
+    let rows = sqlx::query_as::<_, DataPoint>("SELECT * FROM timeseries WHERE collector_id = ? ORDER BY received DESC")
+        .bind(uuid.as_str())
+        .fetch_all(&pool)
+        .await
+        .unwrap();
+
+    Json(rows)
 }
