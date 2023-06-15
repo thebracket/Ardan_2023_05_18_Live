@@ -1,4 +1,5 @@
 mod collector;
+mod api;
 use std::net::SocketAddr;
 use axum::{Router, routing::get, Extension};
 
@@ -17,6 +18,7 @@ async fn main() -> anyhow::Result<()> {
     // Start the web server
     let app = Router::new()
         .route("/", get(test))
+        .route("/api/all", get(api::show_all))
         .layer(Extension(pool));
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));    
     axum::Server::bind(&addr)
