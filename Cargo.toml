@@ -81,3 +81,10 @@ members = [
     "week5_server/collector_daemon",
     "week5_server/collector_server",
 ]
+
+[profile.release]
+opt-level = "z"
+strip = true # Strip symbols
+lto = true
+codegen-units = 1
+panic = "abort"
