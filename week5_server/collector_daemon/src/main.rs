@@ -1,6 +1,13 @@
 use shared_data::CollectorCommandV1;
+use thiserror::Error;
 mod sender;
 mod data_collector;
+
+#[derive(Debug, Error)]
+pub enum CollectorError {
+    #[error("Unable to connect to the server")]
+    UnableToConnect,
+}
 
 fn main() {
     let (tx, rx) = std::sync::mpsc::channel::<CollectorCommandV1>();
@@ -12,7 +19,7 @@ fn main() {
 
     // Listen for commands to send
     while let Ok(command) = rx.recv() {
-        sender::send_command(command);
+        let _ = sender::send_command(command);
     }
 
     let _ = collector_thread.join();
