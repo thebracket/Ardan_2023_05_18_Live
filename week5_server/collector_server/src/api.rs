@@ -21,3 +21,22 @@ pub async fn show_all(Extension(pool): Extension<sqlx::SqlitePool>) -> Json<Vec<
 
     Json(rows)
 }
+
+#[derive(FromRow, Debug, Serialize)]
+pub struct Collector {
+    id: i32,
+    collector_id: String,
+    last_seen: i64,
+}
+
+pub async fn show_collectors(Extension(pool): Extension<sqlx::SqlitePool>) -> Json<Vec<Collector>> {
+    const SQL: &str = "SELECT 
+    DISTINCT(id) AS id, 
+    collector_id, 
+    (SELECT MAX(received) FROM timeseries WHERE collector_id = ts.collector_id) AS last_seen 
+    FROM timeseries ts";
+    Json(sqlx::query_as::<_, Collector>(SQL)
+        .fetch_all(&pool)
+        .await
+        .unwrap())
+}

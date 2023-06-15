@@ -19,6 +19,7 @@ async fn main() -> anyhow::Result<()> {
     let app = Router::new()
         .route("/", get(test))
         .route("/api/all", get(api::show_all))
+        .route("/api/collectors", get(api::show_collectors))
         .layer(Extension(pool));
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));    
     axum::Server::bind(&addr)
