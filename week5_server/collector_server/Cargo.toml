@@ -7,7 +7,9 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.71"
+axum = "0.6.18"
 dotenv = "0.15.0"
+futures = "0.3.28"
 shared_data = { path = "../shared_data" }
 sqlx = { version = "0.6.3", features = ["runtime-tokio-native-tls", "sqlite"] }
 tokio = { version = "1.28.2", features = ["full"] }

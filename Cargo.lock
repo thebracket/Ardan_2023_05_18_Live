@@ -342,7 +342,9 @@ name = "collector_server"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "axum",
  "dotenv",
+ "futures",
  "shared_data",
  "sqlx",
  "tokio",
