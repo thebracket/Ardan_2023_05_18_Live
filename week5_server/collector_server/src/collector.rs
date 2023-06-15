@@ -1,7 +1,10 @@
 use shared_data::CollectorCommandV1;
+use shared_data::CollectorResponseV1;
 use shared_data::decode_v1;
 use shared_data::DATA_COLLECTOR_ADDRESS;
+use shared_data::encode_response_v1;
 use sqlx::{Pool, Sqlite};
+use tokio::io::AsyncWriteExt;
 use std::net::SocketAddr;
 use tokio::io::AsyncReadExt;
 use tokio::net::TcpListener;
@@ -40,6 +43,11 @@ async fn new_connection(mut socket: TcpStream, address: SocketAddr, cnn: Pool<Sq
         //println!("Received data: {received_data:?}");
 
         match received_data {
+            (_timestamp, CollectorCommandV1::RequestWork(_collector_id)) => {
+                // Do something
+                let bytes = encode_response_v1(CollectorResponseV1::NoWork);
+                socket.write_all(&bytes).await.unwrap();
+            }
             (
                 timestamp,
                 CollectorCommandV1::SubmitData {
@@ -63,6 +71,10 @@ async fn new_connection(mut socket: TcpStream, address: SocketAddr, cnn: Pool<Sq
 
                 if result.is_err() {
                     println!("Error inserting data into the database: {result:?}");
+                } else {
+                    let ack = CollectorResponseV1::Ack;
+                    let bytes = encode_response_v1(ack);
+                    socket.write_all(&bytes).await.unwrap();
                 }
             }
         }

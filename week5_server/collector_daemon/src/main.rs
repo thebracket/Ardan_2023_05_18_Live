@@ -1,7 +1,9 @@
+use std::collections::VecDeque;
+
 use shared_data::CollectorCommandV1;
 use thiserror::Error;
-mod sender;
 mod data_collector;
+mod sender;
 
 #[derive(Debug, Error)]
 pub enum CollectorError {
@@ -31,8 +33,15 @@ fn main() {
     });
 
     // Listen for commands to send
+    let mut send_queue = VecDeque::with_capacity(120);
     while let Ok(command) = rx.recv() {
-        let _ = sender::send_command(command);
+        let encoded = shared_data::encode_v1(command.clone());
+        //println!("Encoded: {} bytes", encoded.len());
+        send_queue.push_back(encoded);
+        let result = sender::send_queue(&mut send_queue, uuid);
+        if result.is_err() {
+            println!("{result:?}");
+        }
     }
 
     let _ = collector_thread.join();
