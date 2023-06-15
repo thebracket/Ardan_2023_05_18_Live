@@ -78,4 +78,5 @@ members = [
 
     # Week 5: Practical - Build a Server
     "week5_server/shared_data",
+    "week5_server/collector_daemon",
 ]
